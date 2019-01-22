@@ -1,0 +1,16 @@
+[Unit]
+Description=SeobullAPI
+After=network.target
+Requires=mongod.service
+
+[Service]
+User=seobull
+Group=seobull
+WorkingDirectory=/opt/seobull/uweb
+Environment=NODE_ENV=production
+Environment=NODE_CONFIG_DIR=/etc/seobull/uweb/config
+ExecStart=/usr/bin/node -r dotenv/config build/server.js
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
